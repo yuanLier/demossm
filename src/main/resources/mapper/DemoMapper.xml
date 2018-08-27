@@ -32,4 +32,23 @@
         where id = #{id};
     </select>
 
+    <select id="getAllDemos" resultType="List" resultMap="BaseResultMap">
+        select id, name
+        from demo
+        <if test="offset!=null and limit!=null">
+            limit #{offset},#{limit}
+        </if>
+    </select>
+
+    <select id="findByName" resultType="List" resultMap="BaseResultMap">
+        select id, name
+        from demo
+        <if test="name!=null">
+            where name like '%${name}%'
+        </if>
+        <if test="pager.offset!=null and pager.limit!=null">
+            limit #{pager.offset},#{pager.limit}
+        </if>
+    </select>
+
 </mapper>
