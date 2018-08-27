@@ -8,6 +8,6 @@
        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
 
-  <!--&lt;!&ndash;先把这里注释掉，一会记得回来加上&ndash;&gt;-->
-  <!--<import resource="classpath:spring/spring-config.xml"/>-->
+  <!--先把这里注释掉，一会记得回来加上 → 现在就可以加上了啦-->
+  <import resource="classpath:spring/spring-config.xml"/>
 </beans>
