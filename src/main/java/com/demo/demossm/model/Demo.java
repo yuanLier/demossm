@@ -10,4 +10,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class Demo {
+    String id;
+    String name;
 }
