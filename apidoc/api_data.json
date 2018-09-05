@@ -41,18 +41,18 @@
   {
     "type": "DELETE",
     "url": "demo",
-    "title": "删除单个成员信息",
-    "description": "<p>根据编号删除信息</p>",
+    "title": "(批量)删除成员信息",
+    "description": "<p>根据num组删除成员信息，返回成功删除的成员个数</p>",
     "group": "DEMO_DELETE",
     "parameter": {
       "fields": {
         "Parameter": [
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "List",
             "optional": false,
-            "field": "id",
-            "description": "<p>编号</p>"
+            "field": "idList",
+            "description": "<p>学号</p>"
           }
         ]
       }
@@ -61,7 +61,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n  \"msg\": \"success\"\n  \"code\": \"1\",\n  \"object\": 1\n}",
+          "content": "HTTP/1.1 200 OK\n{\n  \"code\": \"1\",\n  \"msg\": \"success\"\n  \"object\": 3\n}",
           "type": "json"
         }
       ]

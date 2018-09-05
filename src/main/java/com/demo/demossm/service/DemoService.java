@@ -36,6 +36,13 @@ public interface DemoService {
     Demo selectByPrimaryKey(Demo key);
 
     /**
+     * 根据id的批量删除
+     * @param idList
+     * @return
+     */
+    int deleteByIds(List<String> idList);
+
+    /**
      * 分页获取全部成员
      * @param pager
      * @return

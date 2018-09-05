@@ -32,6 +32,13 @@
         where id = #{id};
     </select>
 
+    <delete id="deleteByIds" parameterType="java.util.List">
+        delete from demo where id in
+        <foreach collection="list" index="index" item="item" open="(" close=")" separator=",">
+            #{item}
+        </foreach>
+    </delete>
+
     <select id="getAllDemos" resultType="List" resultMap="BaseResultMap">
         select id, name
         from demo

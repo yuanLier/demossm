@@ -6,6 +6,7 @@ import com.demo.demossm.util.Pager;
 import com.demo.demossm.util.ToMap;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class DemoApiDoc {
@@ -26,22 +27,39 @@ public class DemoApiDoc {
         return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
     }
 
+//    记得加上@
+//    /**
+//     *   api {DELETE} demo 删除单个成员信息
+//     *   apiDescription 根据编号删除信息
+//     *   apiGroup DEMO-DELETE
+//     *   apiParam  {String} id 编号
+//     *   apiSuccessExample {json} Success-Response:
+//     *       HTTP/1.1 200 OK
+//     *       {
+//     *         "msg": "success"
+//     *         "code": "1",
+//     *         "object": 1
+//     *       }
+//     */
+//    public Map deleteOneDemo(Demo demo){
+//        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
+//    }
+
     /**
-     *   @api {DELETE} demo 删除单个成员信息
-     *   @apiDescription 根据编号删除信息
+     *   @api {DELETE} demo (批量)删除成员信息
+     *   @apiDescription 根据num组删除成员信息，返回成功删除的成员个数
      *   @apiGroup DEMO-DELETE
-     *   @apiParam  {String} id 编号
+     *   @apiParam  {List} idList 学号
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
      *       {
-     *         "msg": "success"
      *         "code": "1",
-     *         "object": 1
+     *         "msg": "success"
+     *         "object": 3
      *       }
      */
-    public Map deleteOneDemo(Demo demo){
-        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,null);
-
+    public Map deleteByIds(List<String> idList){
+        return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,0);
     }
 
     /**

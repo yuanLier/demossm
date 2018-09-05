@@ -8,6 +8,7 @@ import com.demo.demossm.util.ToMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -29,11 +30,25 @@ public class DemoController {
         return map;
     }
 
+//    @DeleteMapping
+//    public Map deleteOneDemo(@RequestBody Demo demo) {
+//        Map<String,Object> map;
+//        try {
+//            map = ToMap.toSuccessMap(demoService.deleteByPrimaryKey(demo));
+//        } catch (InfoNotFullyException infoNotFullyException){
+//            map = ToMap.toFalseMap(infoNotFullyException.getMessage());
+//        } catch (RuntimeException e){
+//            map = ToMap.toFalseMap(e.getMessage());
+//        }
+//        return map;
+//    }
+
+    //批量删除可以直接覆盖主键删除的 看需要哪一种了
     @DeleteMapping
-    public Map deleteOneDemo(@RequestBody Demo demo) {
+    public Map deleteByIds(@RequestBody List<String> idList) {
         Map<String,Object> map;
         try {
-            map = ToMap.toSuccessMap(demoService.deleteByPrimaryKey(demo));
+            map = ToMap.toSuccessMap(demoService.deleteByIds(idList));
         } catch (InfoNotFullyException infoNotFullyException){
             map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         } catch (RuntimeException e){

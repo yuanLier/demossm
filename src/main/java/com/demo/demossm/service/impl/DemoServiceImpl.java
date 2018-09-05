@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -81,6 +82,23 @@ public class DemoServiceImpl implements DemoService {
         } else {
             logger.info("该成员不存在");
             throw new NullPointerException("该成员不存在");
+        }
+    }
+
+    @Override
+    public int deleteByIds(List<String> idList) {
+        if(!idList.equals(new ArrayList<String>())){
+            int stateNum = demoDao.deleteByIds(idList);
+            if(stateNum > 0){
+                logger.info("成功删除" + stateNum + "名成员信息");
+                return stateNum;
+            } else {
+                logger.info("信息删除失败");
+                throw new RuntimeException("信息删除失败");
+            }
+        } else {
+            logger.info("传入学号为空");
+            throw new InfoNotFullyException("传入学号为空");
         }
     }
 
