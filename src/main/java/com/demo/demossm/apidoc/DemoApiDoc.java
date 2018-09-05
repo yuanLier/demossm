@@ -92,7 +92,8 @@ public class DemoApiDoc {
      *          "code": 1,
      *          "object": {
      *              "id": "001",
-     *              "name": "小黑"
+     *              "name": "小黑",
+     *              "tel": "111"
      *          }
      *       }
      */
@@ -101,10 +102,11 @@ public class DemoApiDoc {
     }
 
     /**
-     *   @api {GET} demo/all/{page} 获取成员列表
+     *   @api {GET} demo/all 获取成员列表
      *   @apiDescription 分页获取全部成员信息
      *   @apiGroup DEMO-QUERY
      *   @apiParam  {Integer} page 当前页码
+     *   @apiParam  {Integer} size 每页数量
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
      *       {
@@ -113,11 +115,13 @@ public class DemoApiDoc {
      *          "object": [
      *              {
      *                  "id": "001",
-     *                  "name": "小黑"
+     *                  "name": "小黑",
+     *                  "tel": "111"
      *              },
      *              {
      *                  "id": "002",
-     *                  "name": "小白"
+     *                  "name": "小白",
+     *                  "tel": "222"
      *              }
      *          ]
      *       }
@@ -127,11 +131,12 @@ public class DemoApiDoc {
     }
 
     /**
-     *   @api {GET} demo/byName/{page} 根据姓名获取成员
-     *   @apiDescription 根据姓名的模糊分页查询
+     *   @api {POST} demo/filter 筛选成员信息
+     *   @apiDescription 根据表单数据筛选成员信息
      *   @apiGroup DEMO-QUERY
      *   @apiParam  {Integer} page 当前页码
-     *   @apiParam  {String} name 姓名
+     *   @apiParam  {Integer} size 每页数量
+     *   @apiParam  {Demo} demo 表单获取到的成员信息
      *   @apiSuccessExample {json} Success-Response:
      *       HTTP/1.1 200 OK
      *       {
@@ -140,17 +145,18 @@ public class DemoApiDoc {
      *          "object": [
      *              {
      *                  "id": "001",
-     *                  "name": "小黑"
+     *                  "name": "小黑",
+     *                  "tel": "111"
      *              },
      *              {
      *                  "id": "002",
-     *                  "name": "小白"
+     *                  "name": "小白",
+     *                  "tel": "222"
      *              }
      *          ]
      *       }
      */
-    public Map findByName( String name, Integer page, Pager<Demo> pager){
-        pager.setCurrentPage(page);
+    public Map demoFilter(String grade, Integer page, Pager<Demo> pager){
         return ToMap.toMap(ConstantValue.SUCCESS_CODE,ConstantValue.SUCCESS,new ArrayList<Demo>());
     }
 

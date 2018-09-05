@@ -53,10 +53,11 @@ public interface DemoDao {
     List<Demo> getAllDemos(Pager<Demo> pager);
 
     /**
-     * 根据姓名的模糊分页查询
+     * 多条件过滤（即多属性的模糊分页查询）
+     * 将传入单个属性改为了传入整个对象
      * @param pager
-     * @param name
+     * @param demo
      * @return
      */
-    List<Demo> findByName(@Param("pager")Pager<Demo> pager, @Param("name")String name);
+    List<Demo> demoFilter(@Param("pager") Pager<Demo> pager, @Param("demo") Demo demo);
 }

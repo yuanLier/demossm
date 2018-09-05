@@ -81,23 +81,27 @@ public class DemoController {
         return map;
     }
 
-    @GetMapping("/all/{page}")
-    public Map getAllDemos(@PathVariable Integer page,
+    @GetMapping("/all")
+    public Map getAllDemos(@RequestParam Integer page,
+                           @RequestParam Integer size,
                              Pager<Demo> pager){
         pager.setCurrentPage(page);
+        pager.setPageSize(size);
         return ToMap.toSuccessMap(demoService.getAllDemos(pager));
     }
 
-    @GetMapping("/byName/{page}")
-    public Map findByName(@RequestParam String name,
-                          @PathVariable Integer page,
+    @PostMapping("/filter")
+    public Map workFilter(@RequestBody Demo demo,
+                          @RequestParam Integer page,
+                          @RequestParam Integer size,
                           Pager<Demo> pager){
+        pager.setPageSize(size);
         pager.setCurrentPage(page);
         Map<String,Object> map;
         try {
-            map = ToMap.toSuccessMap(demoService.findByName(pager, name));
-        } catch (InfoNotFullyException e){
-            map = ToMap.toFalseMap(e.getMessage());
+            map = ToMap.toSuccessMap(demoService.demoFilter(pager, demo));
+        } catch (InfoNotFullyException infoNotFullyException){
+            map = ToMap.toFalseMap(infoNotFullyException.getMessage());
         }
         return map;
     }

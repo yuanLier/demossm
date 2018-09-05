@@ -4,6 +4,7 @@ import com.demo.demossm.dao.DemoDao;
 import com.demo.demossm.exception.InfoNotFullyException;
 import com.demo.demossm.model.Demo;
 import com.demo.demossm.service.DemoService;
+import com.demo.demossm.util.ObjectNotEmptyUtil;
 import com.demo.demossm.util.Pager;
 import com.demo.demossm.util.StringUtil;
 import org.slf4j.Logger;
@@ -108,12 +109,12 @@ public class DemoServiceImpl implements DemoService {
     }
 
     @Override
-    public List<Demo> findByName(Pager<Demo> pager, String name) throws RuntimeException{
-        if (StringUtil.notEmpty(name)) {
-            return demoDao.findByName(pager,name);
+    public List<Demo> demoFilter(Pager<Demo> pager, Demo demo) throws RuntimeException{
+        if (ObjectNotEmptyUtil.notEmpty(demo)) {
+            return demoDao.demoFilter(pager,demo);
         } else {
-            logger.info("昵称信息为空");
-            throw new InfoNotFullyException("昵称信息为空");
+            logger.info("未填写过滤条件");
+            throw new InfoNotFullyException("未填写过滤条件");
         }
     }
 }

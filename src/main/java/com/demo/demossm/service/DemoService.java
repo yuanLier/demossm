@@ -50,10 +50,10 @@ public interface DemoService {
     List<Demo> getAllDemos(Pager<Demo> pager);
 
     /**
-     * 根据姓名的模糊分页查询
+     * 多条件过滤
      * @param pager
-     * @param name
+     * @param demo
      * @return
      */
-    List<Demo> findByName(@Param("pager")Pager<Demo> pager, @Param("name")String name);
+    List<Demo> demoFilter(@Param("pager") Pager<Demo> pager, @Param("demo") Demo demo);
 }

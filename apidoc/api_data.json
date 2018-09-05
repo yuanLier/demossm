@@ -94,7 +94,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n   \"msg\": \"success\",\n   \"code\": 1,\n   \"object\": {\n       \"id\": \"001\",\n       \"name\": \"小黑\"\n   }\n}",
+          "content": "HTTP/1.1 200 OK\n{\n   \"msg\": \"success\",\n   \"code\": 1,\n   \"object\": {\n       \"id\": \"001\",\n       \"name\": \"小黑\",\n       \"tel\": \"111\"\n   }\n}",
           "type": "json"
         }
       ]
@@ -106,42 +106,9 @@
   },
   {
     "type": "GET",
-    "url": "demo/all/{page}",
+    "url": "demo/all",
     "title": "获取成员列表",
     "description": "<p>分页获取全部成员信息</p>",
-    "group": "DEMO_QUERY",
-    "parameter": {
-      "fields": {
-        "Parameter": [
-          {
-            "group": "Parameter",
-            "type": "Integer",
-            "optional": false,
-            "field": "page",
-            "description": "<p>当前页码</p>"
-          }
-        ]
-      }
-    },
-    "success": {
-      "examples": [
-        {
-          "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n   \"msg\": \"success\",\n   \"code\": 1,\n   \"object\": [\n       {\n           \"id\": \"001\",\n           \"name\": \"小黑\"\n       },\n       {\n           \"id\": \"002\",\n           \"name\": \"小白\"\n       }\n   ]\n}",
-          "type": "json"
-        }
-      ]
-    },
-    "version": "0.0.0",
-    "filename": "src/main/java/com/demo/demossm/apidoc/DemoApiDoc.java",
-    "groupTitle": "DEMO_QUERY",
-    "name": "GetDemoAllPage"
-  },
-  {
-    "type": "GET",
-    "url": "demo/byName/{page}",
-    "title": "根据姓名获取成员",
-    "description": "<p>根据姓名的模糊分页查询</p>",
     "group": "DEMO_QUERY",
     "parameter": {
       "fields": {
@@ -155,10 +122,10 @@
           },
           {
             "group": "Parameter",
-            "type": "String",
+            "type": "Integer",
             "optional": false,
-            "field": "name",
-            "description": "<p>姓名</p>"
+            "field": "size",
+            "description": "<p>每页数量</p>"
           }
         ]
       }
@@ -167,7 +134,7 @@
       "examples": [
         {
           "title": "Success-Response:",
-          "content": "HTTP/1.1 200 OK\n{\n   \"msg\": \"success\",\n   \"code\": 1,\n   \"object\": [\n       {\n           \"id\": \"001\",\n           \"name\": \"小黑\"\n       },\n       {\n           \"id\": \"002\",\n           \"name\": \"小白\"\n       }\n   ]\n}",
+          "content": "HTTP/1.1 200 OK\n{\n   \"msg\": \"success\",\n   \"code\": 1,\n   \"object\": [\n       {\n           \"id\": \"001\",\n           \"name\": \"小黑\",\n           \"tel\": \"111\"\n       },\n       {\n           \"id\": \"002\",\n           \"name\": \"小白\",\n           \"tel\": \"222\"\n       }\n   ]\n}",
           "type": "json"
         }
       ]
@@ -175,7 +142,54 @@
     "version": "0.0.0",
     "filename": "src/main/java/com/demo/demossm/apidoc/DemoApiDoc.java",
     "groupTitle": "DEMO_QUERY",
-    "name": "GetDemoBynamePage"
+    "name": "GetDemoAll"
+  },
+  {
+    "type": "POST",
+    "url": "demo/filter",
+    "title": "筛选成员信息",
+    "description": "<p>根据表单数据筛选成员信息</p>",
+    "group": "DEMO_QUERY",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "page",
+            "description": "<p>当前页码</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Integer",
+            "optional": false,
+            "field": "size",
+            "description": "<p>每页数量</p>"
+          },
+          {
+            "group": "Parameter",
+            "type": "Demo",
+            "optional": false,
+            "field": "demo",
+            "description": "<p>表单获取到的成员信息</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "HTTP/1.1 200 OK\n{\n   \"msg\": \"success\",\n   \"code\": 1,\n   \"object\": [\n       {\n           \"id\": \"001\",\n           \"name\": \"小黑\",\n           \"tel\": \"111\"\n       },\n       {\n           \"id\": \"002\",\n           \"name\": \"小白\",\n           \"tel\": \"222\"\n       }\n   ]\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "version": "0.0.0",
+    "filename": "src/main/java/com/demo/demossm/apidoc/DemoApiDoc.java",
+    "groupTitle": "DEMO_QUERY",
+    "name": "PostDemoFilter"
   },
   {
     "type": "PUT",
